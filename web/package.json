@@ -2,10 +2,6 @@
   "name": "nagware-app",
   "version": "0.1.0",
   "description": "Sample app",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/tottokotkd/nagware"
-  },
   "scripts": {
     "start": "gulp",
     "build": "gulp build"
