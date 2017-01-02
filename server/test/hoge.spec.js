@@ -9,8 +9,4 @@ describe('test of ci', () => {
        const str = 'test';
        assert(str === 'test');
    }) ;
-    it('failure', () => {
-        const str = 'test';
-        assert(str != 'test');
-    }) ;
 });
