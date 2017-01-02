@@ -5,5 +5,5 @@ install:
     - cd ./server && npm install
     - cd ../web && npm install
 script:
-    - cd ./server && npm test
+    - cd ../server && npm test
     - cd ../web && npm test
