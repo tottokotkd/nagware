@@ -4,9 +4,13 @@
 
 import assert from 'power-assert'
 
-describe('hoge', () => {
-   it('es2015 available', () => {
+describe('test of ci', () => {
+   it('success', () => {
        const str = 'test';
        assert(str === 'test');
    }) ;
+    it('failure', () => {
+        const str = 'test';
+        assert(str != 'test');
+    }) ;
 });
