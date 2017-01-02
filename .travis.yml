@@ -1,0 +1,9 @@
+language: node_js
+node_js:
+    - "6"
+install:
+    - cd ./server && npm install
+    - cd ../web && npm install
+script:
+    - cd ./server && npm test
+    - cd ../web && npm test
