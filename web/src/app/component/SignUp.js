@@ -3,23 +3,37 @@
  */
 
 import * as React from 'react'
-import * as UI from 'semantic-ui-react';
+import {defineMessages, intlShape} from 'react-intl'
+import {Form, Button} from 'semantic-ui-react';
+const {PropTypes, Component} = React;
 
-export class SignUp extends React.Component {
+import {commonWords} from '../intl/index'
 
-    handleSubmit(e, { formData }) {
-        e.preventDefault();
-        this.props.signUp(formData.name, formData.mail, formData.pass)
-    };
+export class SignUp extends Component {
 
     render() {
+        const handleSubmit = (e, {formData}) => {
+            e.preventDefault();
+            this.props.signUp(formData.username, formData.mail, formData.password)
+        };
+
         return (
-            <UI.Form onSubmit={this.handleSubmit.bind(this)}>
-                <UI.Form.Input label='username' name="name" type='text' required />
-                <UI.Form.Input label='mail' name="mail" type='email' required />
-                <UI.Form.Input label='Enter Password' name='pass' type='password' required />
-                <UI.Button type='submit'>Submit</UI.Button>
-            </UI.Form>
+            <Form onSubmit={handleSubmit}>
+                <Form.Input label={this.props.intl.formatMessage(commonWords.username)} name="username" type='text' defaultValue={this.props.username} required />
+                <Form.Input label={this.props.intl.formatMessage(commonWords.mail)} name="mail" type='email' defaultValue={this.props.mail} required />
+                <Form.Input label={this.props.intl.formatMessage(commonWords.password)} name='password' type='password' defaultValue={this.props.password} required />
+                <Button type='submit'>{this.props.intl.formatMessage(commonWords.submit)}</Button>
+            </Form>
         )
     }
 }
+
+SignUp.propTypes = {
+    username: PropTypes.string,
+    mail: PropTypes.string,
+    password: PropTypes.string,
+    signUp: PropTypes.func.isRequired,
+
+    // react-intl
+    intl: intlShape
+};

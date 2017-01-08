@@ -1,0 +1,27 @@
+[
+  {
+    "id": "index.commonWordGroup.username",
+    "description": "simple expression for user's name",
+    "defaultMessage": "user name"
+  },
+  {
+    "id": "index.commonWordGroup.mail",
+    "description": "simple expression for mail",
+    "defaultMessage": "mail"
+  },
+  {
+    "id": "index.commonWordGroup.password",
+    "description": "simple expression for password",
+    "defaultMessage": "password"
+  },
+  {
+    "id": "index.commonWordGroup.submit",
+    "description": "simple expression for submit",
+    "defaultMessage": "submit"
+  },
+  {
+    "id": "index.commonWordGroup.selectLanguage",
+    "description": "simple expression for 'select language'",
+    "defaultMessage": "select language"
+  }
+]
