@@ -1,0 +1,4 @@
+--compilers js:babel-register
+--require test/env.js test/dom.js
+--ui bdd
+--reporter spec

@@ -3,7 +3,9 @@ import babelify from 'babelify'
 import watchify from 'watchify'
 
 import gulp from 'gulp'
+import gulpIf from 'gulp-if';
 import uglify from 'gulp-uglify'
+import util from 'gulp-util';
 import sourcemaps from 'gulp-sourcemaps'
 
 import buffer from 'vinyl-buffer'
@@ -14,14 +16,15 @@ import {BundleLogger, errorHandler} from '../util/loggers'
 
 gulp.task('browserify', (callback) => {
 
-    const config = getConfig();
+    const isProduction = !!util.env.production;
+    const config = getConfig(isProduction);
     const bundleLogger = new BundleLogger;
     let bundleQueue = config.browserify.bundleConfigs.length;
 
     function getBundler(bundleConfig) {
         return browserify({...config.browserify.common, entries: bundleConfig.entries})
-            .transform(babelify.configure(config.babel))
-            .transform('browserify-shim', { global: true });
+            .transform(babelify.configure(config.babel));
+            // .transform('browserify-shim', { global: true });
     }
 
     config.browserify.bundleConfigs
@@ -36,10 +39,9 @@ gulp.task('browserify', (callback) => {
                     .on('error', errorHandler)
                     .pipe(source(outputName))
                     .pipe(buffer())
-                    .pipe(sourcemaps.init({loadMaps: true}))
-                    .pipe(uglify())
-                    .pipe(sourcemaps.write("./"))
-
+                    .pipe(gulpIf(isProduction, sourcemaps.init({loadMaps: true})))
+                    .pipe(gulpIf(isProduction, uglify()))
+                    .pipe(gulpIf(isProduction, sourcemaps.write("./")))
                     .pipe(gulp.dest(dest))
                     .on('end', reportFinished);
             };

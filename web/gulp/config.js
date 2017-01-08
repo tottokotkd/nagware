@@ -29,7 +29,14 @@ export function getConfig(isProduction) {
             extensions: ['.js', '.jsx'],
         },
         babel: {
-            presets: ["es2015", "react", "stage-0"]
+            presets: ["es2017", "es2016", "es2015", "react", "stage-0"],
+            plugins: [
+                "transform-es2015-modules-commonjs",
+                ["react-intl", {
+                    "messagesDir": "./extracted-messages/",
+                    "enforceDescriptions": true
+                }]
+            ]
         }
     };
 }
