@@ -2,11 +2,12 @@
  * Created by tottokotkd on 2016/12/30.
  */
 
+import {expect} from 'chai'
+
 import React from 'react'
 import {renderToStaticMarkup} from 'react-dom/server'
 import {IntlProvider} from 'react-intl'
 import {shallow, mount} from 'enzyme'
-import {expect} from 'chai'
 import * as sinon from 'sinon'
 import {Form, Button} from 'semantic-ui-react'
 import _ from 'lodash'
