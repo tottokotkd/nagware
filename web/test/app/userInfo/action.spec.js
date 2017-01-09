@@ -30,7 +30,7 @@ describe('user info actions', function() {
 
         AWS.config.update({
             region: "us-west-2",
-            endpoint: "http://localhost:7777"
+            endpoint: "http://localhost:8000"
         });
 
         var dynamodb = new AWS.DynamoDB();
