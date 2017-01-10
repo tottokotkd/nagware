@@ -26,12 +26,6 @@ describe('user info actions', function() {
         // }).promise()
         //     .then(data => expect(data).to.equal(0));
 
-        var AWS = require("aws-sdk");
-
-        AWS.config.update({
-            region: "us-west-2",
-            endpoint: "http://localhost:8000"
-        });
 
         var dynamodb = new AWS.DynamoDB();
 
