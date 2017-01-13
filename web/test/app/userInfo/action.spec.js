@@ -3,11 +3,24 @@
  */
 
 import {expect} from 'chai'
+import _ from 'lodash'
+import * as AWS from 'aws-sdk'
 
-// import * as AWS from 'aws-sdk'
+import {createAllTables} from '../../tables'
+
+AWS.config.update({
+    region: "us-west-2",
+    endpoint: "http://localhost:8000"
+});
+const dynamoDB = new AWS.DynamoDB();
 
 describe('user info actions', function() {
     this.timeout(0);
+
+    before('create tables', () => {
+        return createAllTables(new AWS.DynamoDB());
+    });
+
     it('works with docker', done => {
         // return dynamoDB.createTable({
         //     TableName : "Movies",
@@ -26,8 +39,7 @@ describe('user info actions', function() {
         // }).promise()
         //     .then(data => expect(data).to.equal(0));
 
-
-        var dynamodb = new AWS.DynamoDB();
+        dynamoDB
 
         var params = {
             TableName : "Movies2",
@@ -45,7 +57,9 @@ describe('user info actions', function() {
             }
         };
 
-        dynamodb.createTable(params, function(err, data) {
+
+
+        dynamoDB.createTable(params, function(err, data) {
             if (err) {
                 console.error("Unable to create table. Error JSON:", JSON.stringify(err, null, 2));
                 done();

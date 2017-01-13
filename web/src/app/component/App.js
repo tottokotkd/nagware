@@ -9,13 +9,13 @@ import {IntlProvider, addLocaleData} from 'react-intl'
 import ja from 'react-intl/locale-data/ja'
 addLocaleData([...ja]);
 
-import {AppMain} from './AppMain'
+import {AppMainContainer} from '../container/AppMain'
 
 export class App extends Component {
     render() {
         return (
             <IntlProvider locale={this.props.locale} messages={this.props.messages}>
-                <AppMain/>
+                <AppMainContainer/>
             </IntlProvider>
         )
     }

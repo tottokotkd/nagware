@@ -11,7 +11,11 @@ import {reducer} from './reducer'
 
 const middlewares = [thunk, promise];
 if (process.env.NODE_ENV != 'production') {
-    const logger = createLogger();
+    const logger = createLogger({
+        actionTransformer: action => ({
+            ...action,
+            type: String(action.type),
+        })});
     middlewares.push(logger);
 }
 

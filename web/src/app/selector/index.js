@@ -5,6 +5,11 @@
 import {createSelector} from'reselect'
 import sortBy from 'lodash/sortBy'
 
+export const getAppMode = createSelector(
+    state => state.app.mode,
+    mode => mode
+);
+
 export const getLanguages = createSelector(
     state => state.user.lang.languages,
     languages => {

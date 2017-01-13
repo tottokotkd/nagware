@@ -3,18 +3,19 @@
  */
 
 import {shallow, mount} from 'enzyme'
-import {expect} from 'chai'
+import chai, {expect} from 'chai'
 import sinon from 'sinon'
+chai.config.truncateThreshold = 0;
 
-import React from 'react'
-import {IntlProvider} from 'react-intl'
+import React, {PropTypes} from 'react'
+import {IntlProvider, intlShape} from 'react-intl'
 import {Dropdown} from 'semantic-ui-react'
 import _ from 'lodash'
 
 import {LangSelect} from '../../../src/app/component/LangSelect'
 import {commonWords, msgData, languages} from '../../../src/app/intl/index'
 
-describe('LangSelect Component', () => {
+describe('LangSelect', () => {
 
     function shallowDropdown(props) {
         const {intl, languages, select, watch} = _.defaults(props, {
@@ -26,7 +27,16 @@ describe('LangSelect Component', () => {
         return shallow(<LangSelect intl={intl} languages={languages} select={select} watch={watch}/>);
     }
 
-    describe('components', () => {
+    describe('PropTypes', () => {
+        it('has propTypes', () => {
+            expect(LangSelect.propTypes.select).to.be.not.null;
+            expect(LangSelect.propTypes.languages).to.be.not.null;
+            expect(LangSelect.propTypes.intl).to.be.not.null;
+            expect(LangSelect.propTypes.watch).to.be.not.null
+        });
+    });
+
+    describe('Components', () => {
         it('calls onChange event', () => {
             const select = sinon.spy();
             const wrapper = shallowDropdown({select});
@@ -35,7 +45,7 @@ describe('LangSelect Component', () => {
         });
     });
 
-    describe('intl', () => {
+    describe('Internationalization', () => {
         Object.values(languages).forEach(lang => {
             const msg = msgData[lang.code];
             describe(`with language ${msg.locale}`, () => {

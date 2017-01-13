@@ -1,5 +1,5 @@
 /**
- * Created by tottokotkd on 03/01/2017.
+ * Created by tottokotkd on 2017/01/12.
  */
 
 import * as React from 'react'
@@ -28,11 +28,10 @@ const langShape = PropTypes.shape({
 LangSelect.propTypes = {
     // from state
     languages: PropTypes.arrayOf(langShape).isRequired,
-    watch: PropTypes.any.isRequired,
 
     // dispatcher
     select: PropTypes.func.isRequired,
 
     // react-intl
-    intl: intlShape.isRequired,
+    intl: intlShape.isRequired
 };

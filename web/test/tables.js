@@ -9,7 +9,7 @@ export const tables = {
             {AttributeName: "id", KeyType: "HASH"}
         ],
         AttributeDefinitions: [
-            {AttributeName: "id", AttributeType: "N"}
+            {AttributeName: "id", AttributeType: "S"}
         ],
         ProvisionedThroughput: {
             ReadCapacityUnits: 1,
@@ -20,6 +20,7 @@ export const tables = {
 
 export function createAllTables(dynamoDB) {
     return dynamoDB.listTables().promise()
+        .then(data => data.TableNames)
         .then(list => Promise.all(
             Object.values(tables)
                 .filter(table => !list.includes(table.TableName))

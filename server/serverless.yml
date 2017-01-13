@@ -47,7 +47,7 @@ provider:
 # you can add packaging information here
 package:
   include:
-    - src/**
+    - build/**
   exclude:
     - node_modules/**
 #  exclude:
@@ -57,6 +57,10 @@ package:
 functions:
   hello:
     handler: build/helloHandler.hello
+    events:
+      - http:
+          path: hello
+          method: get
 #    handler: src/sample/helloHandler.hello
 
 #    The following are a few example events you can configure

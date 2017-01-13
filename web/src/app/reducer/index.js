@@ -3,6 +3,7 @@
  */
 
 import {combineReducers} from 'redux'
-import {user} from './user/index'
+import {user} from './user'
+import {app} from './app'
 
-export const reducer = combineReducers({user});
+export const reducer = combineReducers({user, app});
