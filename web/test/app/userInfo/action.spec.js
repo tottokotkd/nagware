@@ -14,8 +14,7 @@ AWS.config.update({
 });
 const dynamoDB = new AWS.DynamoDB();
 
-describe('user info actions', function() {
-    this.timeout(0);
+describe('user info actions', () => {
 
     before('create tables', () => {
         return createAllTables(new AWS.DynamoDB());
@@ -70,3 +69,5 @@ describe('user info actions', function() {
         });
     });
 });
+
+

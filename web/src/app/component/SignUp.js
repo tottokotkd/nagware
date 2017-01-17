@@ -8,13 +8,14 @@ import {Form, Button} from 'semantic-ui-react';
 const {PropTypes, Component} = React;
 
 import {commonWords} from '../intl/index'
+import {getCognitoUserPool} from '../lib/aws'
 
 export class SignUp extends Component {
 
     render() {
         const handleSubmit = (e, {formData}) => {
             e.preventDefault();
-            this.props.signUp(formData.username, formData.mail, formData.password)
+            this.props.signUp(getCognitoUserPool(), formData.username, formData.mail, formData.password)
         };
 
         return (
